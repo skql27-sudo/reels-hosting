@@ -34,6 +34,9 @@
 3. 탭을 떠나기 전에 `device_list_dir C:\Users\smedi_ohcxjq\Downloads`에서 새 `.tmp` 파일(크기로 매칭)을
    찾아 즉시 `device_stage_files` → `/mnt/user-data/uploads/Downloads/`에서 복사해 이름 붙이기.
    (탭을 옮기면 .tmp가 사라짐)
+4. **다운로드 폴더가 연결 안 된 경우(대체 경로)**: 이미지와 같은 출처 페이지에서 JS로 `fetch`→OffscreenCanvas(최대 1000px)
+   →webp q0.9→base64를 `JSON.stringify({key:b64,...})`로 반환. 결과가 커서 툴 결과가 클라우드의
+   `tool-results/*.txt` 파일로 저장되면, 그 JSON의 `[0].text`(JSON 문자열)를 두 번 json.loads 해서 디코드.
 
 ## 3. 영상 만들기
 `/home/claude/work/spec.json`:
