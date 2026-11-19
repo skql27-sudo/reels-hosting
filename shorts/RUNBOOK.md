@@ -7,8 +7,8 @@
 1. `add_repo` skql27-sudo/reels-hosting (push) → `/home/claude/reels-hosting`에 clone.
 2. `mkdir -p /home/claude/shorts/fonts && cp shorts/tools/make_short.py /home/claude/shorts/`
    폰트는 `https://raw.githubusercontent.com/google/fonts/main/` 에서 받기:
-   `ofl/gowunbatang/GowunBatang-Bold.ttf`, `ofl/blackhansans/BlackHanSans-Regular.ttf`,
-   `ofl/nanumpenscript/NanumPenScript-Regular.ttf` → `/home/claude/shorts/fonts/`
+   `ofl/jua/Jua-Regular.ttf`, `ofl/blackhansans/BlackHanSans-Regular.ttf`,
+   `ofl/yeonsung/YeonSung-Regular.ttf`, `ofl/eastseadokdo/EastSeaDokdo-Regular.ttf` → `/home/claude/shorts/fonts/`
 3. `shorts/posted.json`을 읽고 **최근 30일 안에 쓴 글귀·건강 팁은 다시 쓰지 않는다.**
 
 ## 1. 글 쓰기 (spec.json)
@@ -20,17 +20,25 @@
 
 규칙
 - **직접 쓴 글만** 사용. 다른 사람의 시·노래 가사·책 문장을 옮기지 않는다. 출처가 있는 명언을 쓰지 않는다.
-- 어르신이 읽기 쉽게: 한 장에 4~5줄(빈 줄 포함 최대 6), 한 줄 15자 이내, 쉬운 말, 존댓말.
+- 어르신이 읽기 쉽게: 한 장에 4~6줄(빈 줄 포함 최대 8, 건강상식은 "언제 + [무엇]" 2줄씩 3묶음), 한 줄 15자 이내, 쉬운 말, 존댓말.
 - `[단어]` = 크게 강조(빨강 계열), 한 장에 1~2곳. `""` = 빈 줄.
 - 계절·날씨·요일을 반영 (예: 11월 → 환절기 감기, 따뜻한 차, 첫눈, 김장).
-- theme: gold, rose, sky, green, lavender, red 중 3장이 서로 다르게. 건강 장은 주로 green/sky.
+- **스타일: 어르신들이 카톡·밴드에 올리는 '좋은글 짤' 느낌** — 진한 색, 빨간 장미, 오색 반짝이 별, 노랑·형광 글씨에 두꺼운 테두리, 하트, 스마일.
+- theme (3장이 서로 다르게, 매일 조합을 바꾼다):
+  - `purple` 검정+보라 빛무리, 오색 별, 노란 꽃+분홍 장미, 스마일 — 웃음·복 글에. 큰 한자 강조 가능 (`[福]`, `[壽]`)
+  - `roses` 빨간 장미밭+안개꽃+하트 — 행복·사랑·인사 글에
+  - `sunset` 노을과 산, 흰 꽃 — 인생·마음 글에
+  - `night` 밤하늘·달·분홍 장미 — 위로·감사 글에
+  - `card` 연한 바탕+빨간 장미+노란 별 해님, 검정 글씨 — **건강상식** 장에 주로
+  - `gold` 금빛 빛망울 — 차분한 좋은 글에
+- footer(아래 손글씨 한 줄)는 장마다 넣어도 좋다: "하하호호 웃어보세요", "오늘도 즐겁고 행복한날 되세요", "건강하세요" 처럼 짧게.
 - 이모지·특수기호 쓰지 않는다.
 
 ```json
 {"scenes":[
- {"theme":"gold","heading":"오늘의 좋은 글","lines":["좋은 사람을 만나는 것은","[행운]이지만","","좋은 사람이 되는 것은","[나의 선택]입니다"]},
- {"theme":"green","heading":"건강 한마디","lines":["하루 [물 여덟 잔]","하루 [삼십 분] 걷기","하루 [한 번] 크게 웃기","","이것이 최고의 보약입니다"]},
- {"theme":"rose","heading":"오늘 하루도","lines":["웃는 얼굴에","[복]이 들어옵니다","","오늘 하루도","[행복]하세요"],"footer":"건강하고 행복한 하루 되세요"}
+ {"theme":"purple","lines":["[福]","웃으면 [복]이 온대요","","오늘도 활짝","웃어 보세요"],"footer":"하하호호 웃어보세요"},
+ {"theme":"card","heading":"건강상식","lines":["아침에 일어나면","[따뜻한 물 한 잔]","","밥 먹고 나면","[천천히 산책]","","잠들기 전엔","[가벼운 스트레칭]"],"footer":"건강하세요"},
+ {"theme":"roses","heading":"오늘 하루도","lines":["사랑하는","당신에게","","[행복]이 가득한","하루 되세요"],"footer":"오늘도 즐겁고 행복한날 되세요"}
 ]}
 ```
 
