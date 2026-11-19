@@ -38,6 +38,10 @@
    →webp q0.9→base64를 `JSON.stringify({key:b64,...})`로 반환. 결과가 커서 툴 결과가 클라우드의
    `tool-results/*.txt` 파일로 저장되면, 그 JSON의 `[0].text`(JSON 문자열)를 두 번 json.loads 해서 디코드.
 
+5. **이미지 보관**: 사용한 상품 이미지는 사용자 컴퓨터의 `C:\Users\smedi_ohcxjq\OneDrive\바탕 화면\reels\YYYY-MM-DD_am|pm\`
+   폴더에 `번호_브랜드_상품.jpg`로 저장(`/mnt/user-data/outputs/`에 만든 뒤 `device_commit_files`).
+   폴더가 연결 안 돼 있으면 `device_request_folder_access`로 한 번 요청.
+
 ## 3. 영상 만들기
 `/home/claude/work/spec.json`:
 ```json
