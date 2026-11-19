@@ -20,6 +20,9 @@
   - 시즌 키워드 예: 크리스마스마켓, 무드등, 수면양말, 극세사 담요, 문풍지, 가습기, 신학기/봄이면 수납 등.
 - 무인양품 (https://www.mujikorea.co.kr): `get_page_text`로 메인/기획전 상품명·가격, 이미지는 DOM에서
   `product.mujikorea.co.kr/images/...?w=1000`.
+  - 숨은 브라우저 창에서 무지 페이지 JS/검색 페이지가 자주 멈춤 → 검색 API URL로 **직접 navigate** 후
+    `JSON.parse(document.body.innerText)`: `https://mujikorea.co.kr/api/bff/api/products/search/list?sort=NEWDESC&display_size=20&search_keyword=<키워드>&exclude_soldout=1&page=1`
+    (rows: product_name, last_price, options.*.images[0]). 페이지 안 fetch는 멈추니 쓰지 말 것.
 - 모던하우스 (https://modernhouse.elandmall.co.kr): 메인 스크롤 후 이미지 `data-src`/`data-srcset`
   (`item.elandrs.com/...?h=1000&q=95`). 가격은 "최종할인가" → 영상·캡션에 "할인가" 표기.
 - 구성: 상품 5~6개, 세 브랜드가 모두 들어가게, 가격대 섞기. 시즌/신상(newPdYn=Y)·리뷰 많은 상품 우선.
@@ -34,6 +37,8 @@
 3. 탭을 떠나기 전에 `device_list_dir C:\Users\smedi_ohcxjq\Downloads`에서 새 `.tmp` 파일(크기로 매칭)을
    찾아 즉시 `device_stage_files` → `/mnt/user-data/uploads/Downloads/`에서 복사해 이름 붙이기.
    (탭을 옮기면 .tmp가 사라짐)
+   - 팁: 이미지 URL로 navigate 후 `document.querySelector('img')`를 일반 canvas에 그려 `toDataURL('image/webp',0.9)`
+     (동기 방식)이 숨은 창에서도 가장 안정적. async fetch/createImageBitmap은 타임아웃 나기 쉬움.
 4. **다운로드 폴더가 연결 안 된 경우(대체 경로)**: 이미지와 같은 출처 페이지에서 JS로 `fetch`→OffscreenCanvas(최대 1000px)
    →webp q0.9→base64를 `JSON.stringify({key:b64,...})`로 반환. 결과가 커서 툴 결과가 클라우드의
    `tool-results/*.txt` 파일로 저장되면, 그 JSON의 `[0].text`(JSON 문자열)를 두 번 json.loads 해서 디코드.
